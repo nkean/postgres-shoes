@@ -52,6 +52,20 @@ app.post('/shoe', (req, res) => {
         });
 });
 
+app.put('/shoe', (req, res) => {
+    const shoe = req.body;
+    pool.query(`UPDATE "shoes"
+                SET "name" = $1, "cost" = $2
+                WHERE "id" = $3`, [shoe.name, shoe.cost, shoe.id])
+        .then(() => {
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log(`error with SQL UPDATE on PUT to /shoe: ${error}`);
+            res.sendStatus(500);
+        })
+});
+
 app.listen(PORT, () => {
     console.log(`server listening on port: ${PORT}`);
 });

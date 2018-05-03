@@ -66,6 +66,19 @@ app.put('/shoe', (req, res) => {
         })
 });
 
+app.delete('/shoe', (req, res) => {
+    const shoe = req.query;
+    pool.query(`DELETE FROM "shoes"
+                WHERE "id" = $1`, [shoe.id])
+        .then(() => {
+            res.sendStatus(200);
+        })
+        .catch((error) => {
+            console.log(`error with SQL UPDATE on DELETE to /shoe: ${error}`);
+            res.sendStatus(500);
+        })
+});
+
 app.listen(PORT, () => {
     console.log(`server listening on port: ${PORT}`);
 });

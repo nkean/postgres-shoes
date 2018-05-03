@@ -37,5 +37,20 @@ app.controller('ShoeStoreController', ['$http', function($http) {
         })
     }
 
+    self.deleteShoe = function(shoeObject) {
+        $http({
+            method: 'DELETE',
+            url: '/shoe',
+            params: shoeObject,
+        })
+        .then(function(response){
+            console.log(response);
+            self.getShoeList();
+        })
+        .catch(function(error) {
+            console.log('Error on DELETE to /shoe: ', error);
+        })
+    }
+
     self.getShoeList();
 }]);

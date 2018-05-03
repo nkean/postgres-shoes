@@ -38,16 +38,14 @@ const shoes = [
     },
 ];
 
-// app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.get('/shoes', (req, res) => {
+app.get('/shoe', (req, res) => {
     res.send(shoes);
 });
 
-app.post('/shoes', (req, res) => {
+app.post('/shoe', (req, res) => {
     shoes.push(req.body);
-    console.log(shoes);
     res.sendStatus(200);
 });
 

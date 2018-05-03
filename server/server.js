@@ -60,6 +60,7 @@ const shoes = [
 ];
 
 app.use(bodyParser.json());
+app.use(express.static('server/public'));
 
 app.get('/shoe', (req, res) => {
     res.send(shoes);
